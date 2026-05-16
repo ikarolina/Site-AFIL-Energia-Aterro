@@ -439,65 +439,46 @@
 <body>
 
     <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+<header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-            <div class="flex items-center justify-between h-16 sm:h-20">
+        <div class="flex items-center justify-between h-16 sm:h-20">
 
-                <!-- LOGO -->
-                <div class="logo-container">
-                    <a href="#home" class="logo-link">
-                        <img src="img/logo-afil.png" 
-                             alt="AFIL Energia de Aterro" 
-                             class="logo-img">
-                    </a>
-                    <div class="logo-text hidden sm:flex">
-                        <h2>AFIL</h2>
-                        <p>Energia de Aterro</p>
-                    </div>
-                </div>
-
-                <!-- MENU DESKTOP -->
-                <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
-                    <a href="#home" class="nav-link text-verde">Início</a>
-                    <a href="#sobre" class="nav-link text-verde">Quem Somos</a>
-                    <a href="#servicos" class="nav-link text-verde">Serviços</a>
-                    <a href="#expertise" class="nav-link text-verde">Expertise</a>
-                    <a href="#contato" class="nav-link text-verde">Contato</a>
-                </nav>
-
-                <!-- CTA DESKTOP -->
-                <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
-                    class="hidden md:flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl btn-primary text-white font-bold shadow-lg hover:shadow-xl transition-shadow text-sm sm:text-base">
-                    <i class="fab fa-whatsapp text-base sm:text-lg"></i>
-                    <span class="hidden lg:inline">WhatsApp</span>
+            <div class="logo-container py-2">
+                <a href="#home" class="logo-link">
+                    <img src="img/logo-afil.png" 
+                         alt="AFIL Energia de Aterro" 
+                         class="logo-img mix-blend-multiply mix-blend-mode-multiply"
+                         style="mix-blend-mode: multiply;">
                 </a>
-
-                <!-- MOBILE MENU BUTTON -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition">
-                    <i class="fas fa-bars text-xl sm:text-2xl text-verde"></i>
-                </button>
-
+                <div class="logo-text hidden sm:flex ml-2">
+                    <h2>AFIL</h2>
+                    <p>Energia de Aterro</p>
+                </div>
             </div>
+
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+                <a href="#home" class="nav-link text-verde">Início</a>
+                <a href="#sobre" class="nav-link text-verde">Quem Somos</a>
+                <a href="#servicos" class="nav-link text-verde">Serviços</a>
+                <a href="#expertise" class="nav-link text-verde">Expertise</a>
+                <a href="#contato" class="nav-link text-verde">Contato</a>
+            </nav>
+
+            <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
+                class="hidden md:flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl btn-primary text-white font-bold shadow-lg hover:shadow-xl transition-shadow text-sm sm:text-base">
+                <i class="fab fa-whatsapp text-base sm:text-lg"></i>
+                <span class="hidden lg:inline">WhatsApp</span>
+            </a>
+
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition">
+                <i class="fas fa-bars text-xl sm:text-2xl text-verde"></i>
+            </button>
 
         </div>
 
-        <!-- MOBILE MENU -->
-        <nav id="mobile-menu" class="mobile-menu lg:hidden fixed left-0 top-16 w-full bg-white border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-4 py-3 space-y-1">
-                <a href="#home" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Início</a>
-                <a href="#sobre" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Quem Somos</a>
-                <a href="#servicos" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Serviços</a>
-                <a href="#expertise" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Expertise</a>
-                <a href="#contato" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Contato</a>
-                <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg btn-primary text-white font-semibold mt-3">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a>
-            </div>
-        </nav>
-    </header>
+    </div>
+</header>
 
     <!-- HERO -->
     <section id="home" class="hero-bg relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
@@ -505,7 +486,7 @@
         <div class="blur-circle bg-green-400 w-96 h-96 top-10 -right-20"></div>
         <div class="blur-circle bg-emerald-300 w-80 h-80 -bottom-20 -left-20"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center py-16 sm:py-20">
 
             <!-- TEXT -->
             <div data-aos="fade-right" data-aos-delay="100">
@@ -553,11 +534,11 @@
             </div>
 
             <!-- IMAGE HERO -->
-            <div class="relative hidden lg:block" data-aos="fade-left" data-aos-delay="200">
+            <div class="relative mt-8 sm:mt-0 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
 
-                <div class="absolute -top-6 -left-6 w-full h-full rounded-[40px] border border-white/10"></div>
+                <div class="absolute -top-6 -left-6 w-full h-full rounded-[40px] border border-white/10 hidden lg:block"></div>
 
-                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating h-[500px] md:h-[600px]">
+                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] xl:h-[600px]">
                     <img src="img/aterramento.png" alt="Aterro Sanitário" class="w-full h-full object-cover">
                 </div>
 
@@ -946,7 +927,7 @@
 
                     <!-- SOCIAL LINKS -->
                     <div class="flex gap-3">
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
+                        <a href="https://www.instagram.com/afilenergiadeaterro/" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
                             <i class="fab fa-instagram text-sm"></i>
                         </a>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook">
