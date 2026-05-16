@@ -209,6 +209,24 @@
             box-shadow: 0 20px 40px rgba(28, 103, 88, 0.08);
         }
 
+        .image-wrapper {
+            background: linear-gradient(135deg, rgba(91, 191, 138, 0.12), rgba(28, 103, 88, 0.18));
+            border-radius: 35px;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
         .image-placeholder {
             background:
                 linear-gradient(135deg, rgba(91, 191, 138, 0.12), rgba(28, 103, 88, 0.18));
@@ -298,10 +316,50 @@
             transform: translateX(0);
         }
 
+        /* Logo otimizado */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            height: 100%;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            padding: 8px 0;
+        }
+
         @media (max-width: 768px) {
+            .logo-img {
+                height: 50px;
+            }
+
             .counter {
                 font-size: 2rem;
             }
+        }
+
+        /* Social links */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--verde-claro);
+            transition: all .3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--verde-claro);
+            color: #ffffff;
+            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -315,10 +373,10 @@
             <div class="flex items-center justify-between h-20 md:h-24">
 
                 <!-- LOGO -->
-                <div class="flex items-center gap-3 md:gap-4 flex-shrink-0">
-                    <img src="img\logo-afil.JPEG" alt="AFIL Energia" class="h-14 md:h-16 w-auto object-contain hover:scale-105 transition">
+                <div class="logo-container">
+                    <img src="img/logo-afil.JPEG" alt="AFIL Energia" class="logo-img hover:scale-110 transition">
                     <div class="hidden sm:block">
-                        <h2 class="font-black text-lg md:text-xl tracking-tight text-verde">AFIL</h2>
+                        <h2 class="font-black text-lg md:text-xl tracking-tight text-verde leading-tight">AFIL</h2>
                         <p class="text-xs uppercase tracking-[2px] text-gray-500 font-semibold">Energia de Aterro</p>
                     </div>
                 </div>
@@ -422,12 +480,8 @@
 
                 <div class="absolute -top-6 -left-6 w-full h-full rounded-[40px] border border-white/10"></div>
 
-                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating image-placeholder h-[600px] flex items-center justify-center">
-                    <div class="text-center px-8">
-                        <i class="fa-solid fa-image text-6xl text-white/40 mb-6"></i>
-                        <h3 class="text-white text-2xl font-bold mb-4">Imagem Principal</h3>
-                        <p class="text-white/70 text-sm">Aterro sanitário, planta de biogás ou geração de energia</p>
-                    </div>
+                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating h-[600px]">
+                    <img src="img/aterramento.jpeg" alt="Aterro Sanitário" class="w-full h-full object-cover">
                 </div>
 
             </div>
@@ -452,12 +506,8 @@
 
                 <!-- IMAGE -->
                 <div data-aos="fade-right">
-                    <div class="image-placeholder rounded-[35px] h-[450px] md:h-[550px] flex items-center justify-center shadow-xl">
-                        <div class="text-center px-8">
-                            <i class="fa-solid fa-industry text-6xl text-verde mb-6"></i>
-                            <h3 class="text-2xl font-bold text-verde mb-3">Imagem Institucional</h3>
-                            <p class="text-gray-500 text-sm">Equipe, planta industrial ou engenharia</p>
-                        </div>
+                    <div class="image-wrapper h-[450px] md:h-[550px] shadow-xl">
+                        <img src="img/grupo.jpeg" alt="Equipe AFIL Energia" class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -713,12 +763,8 @@
 
                 <!-- IMAGE -->
                 <div data-aos="fade-left">
-                    <div class="image-placeholder rounded-[35px] h-[450px] md:h-[580px] flex items-center justify-center shadow-2xl">
-                        <div class="text-center px-8">
-                            <i class="fa-solid fa-user-helmet-safety text-6xl text-verde mb-6"></i>
-                            <h3 class="text-2xl font-bold text-verde mb-3">Foto Técnica</h3>
-                            <p class="text-gray-500 text-sm">Engenharia, planta industrial, biometano ou operação</p>
-                        </div>
+                    <div class="image-wrapper rounded-[35px] h-[450px] md:h-[580px] shadow-2xl">
+                        <img src="img/grupo.jpeg" alt="Equipe Técnica AFIL" class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -768,7 +814,7 @@
     </section>
 
     <!-- CONTATO / FOOTER -->
-    <footer id="contato" class="bg-[#081411] text-white pt-20 md:pt-32 pb-8 md:pb-10">
+    <footer id="contato" class="bg-[#081411] text-white pt-20 md:pt-32 pb-12 md:pb-16">
 
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
@@ -787,7 +833,7 @@
                         Consultoria e engenharia especializada em biogás, biometano, geração de energia e créditos de carbono.
                     </p>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6 mb-10 md:mb-12">
 
                         <div class="flex gap-4 md:gap-5 group">
                             <div class="w-12 md:w-14 h-12 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition">
@@ -819,6 +865,19 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <!-- SOCIAL LINKS -->
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
 
                 </div>
