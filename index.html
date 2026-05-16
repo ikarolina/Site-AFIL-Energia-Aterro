@@ -316,29 +316,92 @@
             transform: translateX(0);
         }
 
-        /* Logo otimizado */
+        /* Logo - Integração melhorada */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            height: 100%;
+            gap: 0.625rem;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
         }
 
         .logo-img {
-            height: 60px;
-            width: auto;
+            height: auto;
+            width: 52px;
+            max-height: 60px;
             object-fit: contain;
             display: block;
-            padding: 8px 0;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04));
+            transition: filter 0.3s ease;
         }
 
-        @media (max-width: 768px) {
+        .logo-link:hover .logo-img {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+            line-height: 1;
+        }
+
+        .logo-text h2 {
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--verde-escuro);
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.625rem;
+            letter-spacing: 1.5px;
+            color: #9CA3AF;
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 640px) {
             .logo-img {
-                height: 50px;
+                width: 44px;
+            }
+
+            .logo-text {
+                display: none;
             }
 
             .counter {
-                font-size: 2rem;
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .logo-img {
+                width: 48px;
+            }
+
+            .logo-text h2 {
+                font-size: 0.95rem;
+            }
+
+            .logo-text p {
+                font-size: 0.6rem;
             }
         }
 
@@ -361,31 +424,38 @@
             color: #ffffff;
             transform: translateY(-3px);
         }
+
+        /* Header - Melhorias */
+        header {
+            transition: box-shadow 0.3s ease;
+        }
+
+        header:not(:hover) {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
     </style>
 </head>
 
 <body>
 
     <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-            <div class="flex items-center justify-between h-20 md:h-24">
+            <div class="flex items-center justify-between h-16 sm:h-20">
 
                 <!-- LOGO -->
                 <div class="logo-container">
-                    <a href="#home" class="flex items-center gap-3 h-full py-2">
-    <img src="img/logo-afil.png" 
-         alt="AFIL Energia de Aterro" 
-         class="h-12 md:h-16 w-auto object-contain hover:scale-105 transition duration-300">
-</a>
-                    <!-- <img src="img/logo-afil.png" alt="AFIL Energia" class="logo-img hover:scale-110 transition"> -->
-                    <div class="hidden sm:block">
-                        <h2 class="font-black text-lg md:text-xl tracking-tight text-verde leading-tight">AFIL</h2>
-                        <p class="text-xs uppercase tracking-[2px] text-gray-500 font-semibold">Energia de Aterro</p>
+                    <a href="#home" class="logo-link">
+                        <img src="img/logo-afil.png" 
+                             alt="AFIL Energia de Aterro" 
+                             class="logo-img">
+                    </a>
+                    <div class="logo-text hidden sm:flex">
+                        <h2>AFIL</h2>
+                        <p>Energia de Aterro</p>
                     </div>
                 </div>
-                
 
                 <!-- MENU DESKTOP -->
                 <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
@@ -398,14 +468,14 @@
 
                 <!-- CTA DESKTOP -->
                 <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
-                    class="hidden md:flex items-center gap-2 px-6 py-3 rounded-xl btn-primary text-white font-bold shadow-lg hover:scale-105">
-                    <i class="fab fa-whatsapp text-lg"></i>
+                    class="hidden md:flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl btn-primary text-white font-bold shadow-lg hover:shadow-xl transition-shadow text-sm sm:text-base">
+                    <i class="fab fa-whatsapp text-base sm:text-lg"></i>
                     <span class="hidden lg:inline">WhatsApp</span>
                 </a>
 
                 <!-- MOBILE MENU BUTTON -->
                 <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition">
-                    <i class="fas fa-bars text-2xl text-verde"></i>
+                    <i class="fas fa-bars text-xl sm:text-2xl text-verde"></i>
                 </button>
 
             </div>
@@ -413,69 +483,70 @@
         </div>
 
         <!-- MOBILE MENU -->
-        <nav id="mobile-menu" class="mobile-menu lg:hidden fixed left-0 top-20 w-full bg-white border-b border-gray-100 shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 py-4 space-y-2">
-                <a href="#home" class="block px-4 py-3 text-verde font-semibold rounded-lg hover:bg-gray-100 transition">Início</a>
-                <a href="#sobre" class="block px-4 py-3 text-verde font-semibold rounded-lg hover:bg-gray-100 transition">Quem Somos</a>
-                <a href="#servicos" class="block px-4 py-3 text-verde font-semibold rounded-lg hover:bg-gray-100 transition">Serviços</a>
-                <a href="#expertise" class="block px-4 py-3 text-verde font-semibold rounded-lg hover:bg-gray-100 transition">Expertise</a>
-                <a href="#contato" class="block px-4 py-3 text-verde font-semibold rounded-lg hover:bg-gray-100 transition">Contato</a>
+        <nav id="mobile-menu" class="mobile-menu lg:hidden fixed left-0 top-16 w-full bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 py-3 space-y-1">
+                <a href="#home" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Início</a>
+                <a href="#sobre" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Quem Somos</a>
+                <a href="#servicos" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Serviços</a>
+                <a href="#expertise" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Expertise</a>
+                <a href="#contato" class="block px-4 py-2.5 text-verde font-semibold rounded-lg hover:bg-gray-50 transition text-sm">Contato</a>
                 <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center gap-2 px-4 py-3 rounded-lg btn-primary text-white font-semibold mt-4">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+                    class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg btn-primary text-white font-semibold mt-3">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
                 </a>
             </div>
         </nav>
     </header>
 
     <!-- HERO -->
-    <section id="home" class="hero-bg relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section id="home" class="hero-bg relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
 
         <div class="blur-circle bg-green-400 w-96 h-96 top-10 -right-20"></div>
         <div class="blur-circle bg-emerald-300 w-80 h-80 -bottom-20 -left-20"></div>
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:gap-16 items-center py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center py-16 sm:py-20">
 
             <!-- TEXT -->
             <div data-aos="fade-right" data-aos-delay="100">
 
-                <span class="inline-flex items-center gap-2 px-4 md:px-5 py-2 rounded-full glass text-white text-xs md:text-sm mb-6 md:mb-8">
-                    <i class="fa-solid fa-leaf"></i>
+                <span class="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass text-white text-xs sm:text-sm mb-6 sm:mb-8">
+                    <i class="fa-solid fa-leaf text-xs sm:text-sm"></i>
                     Soluções Inteligentes para Baixo Carbono
                 </span>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6 md:mb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6 sm:mb-8">
                     Transformando
                     <span class="gradient-text block">Biogás</span>
                     em Energia, Valor e Sustentabilidade
                 </h1>
 
-                <p class="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl mb-8 md:mb-10">
+                <p class="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl mb-8 sm:mb-10">
                     Consultoria e engenharia especializadas em soluções completas para aproveitamento energético do biogás em aterros sanitários, geração de energia, biometano e créditos de carbono.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-3 md:gap-5 mb-12 md:mb-16">
-                    <a href="#servicos" class="btn-primary px-6 md:px-8 py-3 md:py-4 rounded-xl text-white font-bold text-base md:text-lg text-center">
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 mb-10 sm:mb-12">
+                    <a href="#servicos" class="btn-primary px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl text-white font-bold text-sm sm:text-base md:text-lg text-center">
                         Nossas Soluções
                     </a>
-                    <a href="#contato" class="px-6 md:px-8 py-3 md:py-4 rounded-xl border border-white/30 text-white font-semibold hover:bg-white/10 transition text-center">
+                    <a href="#contato" class="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl border border-white/30 text-white font-semibold hover:bg-white/10 transition text-center text-sm sm:text-base md:text-lg">
                         Fale com Especialistas
                     </a>
                 </div>
 
                 <!-- STATS -->
-                <div class="grid grid-cols-3 gap-4 md:gap-5">
-                    <div class="glass rounded-2xl p-4 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
-                        <h3 class="counter text-3xl md:text-4xl font-black text-white">20+</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mt-1 md:mt-2">Anos de experiência</p>
+                <div class="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+                    <div class="glass rounded-2xl p-4 sm:p-5 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+                        <h3 class="counter text-2xl sm:text-3xl md:text-4xl font-black text-white">20+</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">Anos de experiência</p>
                     </div>
-                    <div class="glass rounded-2xl p-4 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="300">
-                        <h3 class="counter text-2xl md:text-3xl font-black text-white">ESG</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mt-1 md:mt-2">Estratégias sustentáveis</p>
+                    <div class="glass rounded-2xl p-4 sm:p-5 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="300">
+                        <h3 class="counter text-xl sm:text-2xl md:text-3xl font-black text-white">ESG</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">Estratégias sustentáveis</p>
                     </div>
-                    <div class="glass rounded-2xl p-4 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="400">
-                        <h3 class="counter text-2xl md:text-3xl font-black text-white">100%</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mt-1 md:mt-2">Foco em performance</p>
+                    <div class="glass rounded-2xl p-4 sm:p-5 md:p-6 text-center" data-aos="zoom-in" data-aos-delay="400">
+                        <h3 class="counter text-xl sm:text-2xl md:text-3xl font-black text-white">100%</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">Foco em performance</p>
                     </div>
                 </div>
 
@@ -486,7 +557,7 @@
 
                 <div class="absolute -top-6 -left-6 w-full h-full rounded-[40px] border border-white/10"></div>
 
-                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating h-[600px]">
+                <div class="relative rounded-[40px] overflow-hidden shadow-2xl floating h-[500px] md:h-[600px]">
                     <img src="img/aterramento.png" alt="Aterro Sanitário" class="w-full h-full object-cover">
                 </div>
 
@@ -495,24 +566,24 @@
         </div>
 
         <!-- SCROLL INDICATOR -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div class="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
             <div class="scroll-indicator">
-                <i class="fa-solid fa-chevron-down text-white text-2xl"></i>
+                <i class="fa-solid fa-chevron-down text-white text-xl sm:text-2xl"></i>
             </div>
         </div>
 
     </section>
 
     <!-- SOBRE -->
-    <section id="sobre" class="py-20 md:py-32 bg-white">
+    <section id="sobre" class="py-16 sm:py-20 md:py-32 bg-white">
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-            <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
 
                 <!-- IMAGE -->
                 <div data-aos="fade-right">
-                    <div class="image-wrapper h-[450px] md:h-[550px] shadow-xl">
+                    <div class="image-wrapper h-[350px] sm:h-[450px] md:h-[550px] shadow-xl">
                         <img src="img/grupo.png" alt="Equipe AFIL Energia" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -522,38 +593,38 @@
 
                     <span class="text-xs uppercase tracking-[3px] text-green-600 font-bold">Quem Somos</span>
 
-                    <h2 class="section-title text-4xl md:text-5xl font-black text-verde mt-4 mb-8">
+                    <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-black text-verde mt-4 sm:mt-5 mb-6 sm:mb-8">
                         Transformando passivos ambientais em ativos sustentáveis
                     </h2>
 
-                    <p class="text-gray-600 leading-8 text-base md:text-lg mb-6 md:mb-8">
+                    <p class="text-gray-600 leading-8 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">
                         A AFIL Energia de Aterro nasceu com o propósito de apoiar empresas e municípios na transformação do passivo ambiental dos aterros sanitários em ativos econômicos e ambientais.
                     </p>
 
-                    <p class="text-gray-600 leading-8 text-base md:text-lg mb-8 md:mb-10">
+                    <p class="text-gray-600 leading-8 text-sm sm:text-base md:text-lg mb-8 sm:mb-10">
                         Nossa atuação combina experiência técnica, visão estratégica e foco em resultados concretos, promovendo eficiência operacional, sustentabilidade e inovação em toda a cadeia de aproveitamento do biogás.
                     </p>
 
                     <!-- CARDS -->
-                    <div class="space-y-5">
+                    <div class="space-y-4 sm:space-y-5">
 
-                        <div class="flex gap-5 p-5 md:p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition group">
-                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:bg-green-200 transition">
-                                <i class="fa-solid fa-bullseye text-green-700"></i>
+                        <div class="flex gap-4 sm:gap-5 p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition group">
+                            <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:bg-green-200 transition">
+                                <i class="fa-solid fa-bullseye text-green-700 text-lg sm:text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg md:text-xl text-verde mb-1 md:mb-2">Missão</h3>
-                                <p class="text-gray-600 text-sm md:text-base">Maximizar o aproveitamento do biogás e contribuir para uma economia de baixo carbono.</p>
+                                <h3 class="font-bold text-base sm:text-lg md:text-xl text-verde mb-1 sm:mb-2">Missão</h3>
+                                <p class="text-gray-600 text-xs sm:text-sm md:text-base">Maximizar o aproveitamento do biogás e contribuir para uma economia de baixo carbono.</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-5 p-5 md:p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition group">
-                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:bg-green-200 transition">
-                                <i class="fa-solid fa-eye text-green-700"></i>
+                        <div class="flex gap-4 sm:gap-5 p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition group">
+                            <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:bg-green-200 transition">
+                                <i class="fa-solid fa-eye text-green-700 text-lg sm:text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg md:text-xl text-verde mb-1 md:mb-2">Visão</h3>
-                                <p class="text-gray-600 text-sm md:text-base">Ser referência nacional e internacional em engenharia e consultoria para aproveitamento de biogás.</p>
+                                <h3 class="font-bold text-base sm:text-lg md:text-xl text-verde mb-1 sm:mb-2">Visão</h3>
+                                <p class="text-gray-600 text-xs sm:text-sm md:text-base">Ser referência nacional e internacional em engenharia e consultoria para aproveitamento de biogás.</p>
                             </div>
                         </div>
 
@@ -568,58 +639,58 @@
     </section>
 
     <!-- VALORES -->
-    <section class="py-20 md:py-28 bg-gelo relative overflow-hidden">
+    <section class="py-16 sm:py-20 md:py-28 bg-gelo relative overflow-hidden">
 
         <div class="absolute inset-0 bg-grid opacity-30"></div>
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
-            <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-20">
 
                 <span class="text-xs uppercase tracking-[3px] text-green-600 font-bold">Valores</span>
 
-                <h2 class="text-4xl md:text-5xl font-black text-verde mt-4 md:mt-5 mb-6 md:mb-8">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-verde mt-4 sm:mt-5 mb-6 sm:mb-8">
                     Compromisso com excelência, inovação e sustentabilidade
                 </h2>
 
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="0">
-                    <i class="fa-solid fa-medal text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Excelência Técnica</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Compromisso com qualidade, precisão e alta performance em cada projeto.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fa-solid fa-medal text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Excelência Técnica</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Compromisso com qualidade, precisão e alta performance em cada projeto.</p>
                 </div>
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fa-solid fa-shield-halved text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Integridade</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Transparência, ética e responsabilidade em todas as relações.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-shield-halved text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Integridade</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Transparência, ética e responsabilidade em todas as relações.</p>
                 </div>
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fa-solid fa-earth-americas text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Sustentabilidade</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Soluções alinhadas à preservação ambiental e economia circular.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-earth-americas text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Sustentabilidade</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Soluções alinhadas à preservação ambiental e economia circular.</p>
                 </div>
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fa-solid fa-lightbulb text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Inovação</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Busca contínua por tecnologias e estratégias mais eficientes.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-lightbulb text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Inovação</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Busca contínua por tecnologias e estratégias mais eficientes.</p>
                 </div>
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fa-solid fa-chart-line text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Resultados</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Foco em desempenho operacional, econômico e ambiental.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-chart-line text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Resultados</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Foco em desempenho operacional, econômico e ambiental.</p>
                 </div>
 
-                <div class="stats-card p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fa-solid fa-handshake text-4xl text-green-600 mb-6"></i>
-                    <h3 class="font-bold text-xl md:text-2xl mb-3 md:mb-4 text-verde">Credibilidade</h3>
-                    <p class="text-gray-600 leading-7 text-sm md:text-base">Relações construídas com confiança e consistência.</p>
+                <div class="stats-card p-5 sm:p-6 md:p-8 rounded-3xl shadow-sm" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fa-solid fa-handshake text-3xl sm:text-4xl text-green-600 mb-4 sm:mb-6"></i>
+                    <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 md:mb-4 text-verde">Credibilidade</h3>
+                    <p class="text-gray-600 leading-7 text-xs sm:text-sm md:text-base">Relações construídas com confiança e consistência.</p>
                 </div>
 
             </div>
@@ -629,80 +700,80 @@
     </section>
 
     <!-- SERVIÇOS -->
-    <section id="servicos" class="py-20 md:py-32 bg-verde relative overflow-hidden">
+    <section id="servicos" class="py-16 sm:py-20 md:py-32 bg-verde relative overflow-hidden">
 
         <div class="absolute inset-0 bg-grid opacity-10"></div>
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
-            <div class="text-center max-w-4xl mx-auto mb-16 md:mb-24">
+            <div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16 md:mb-24">
 
                 <span class="text-xs uppercase tracking-[3px] text-green-300 font-bold">Nossos Serviços</span>
 
-                <h2 class="text-4xl md:text-5xl font-black text-white mt-4 md:mt-5 mb-6 md:mb-8">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mt-4 sm:mt-5 mb-6 sm:mb-8">
                     Soluções completas para geração de valor sustentável
                 </h2>
 
-                <p class="text-gray-300 text-base md:text-lg leading-8">
+                <p class="text-gray-300 text-sm sm:text-base md:text-lg leading-8">
                     Engenharia, consultoria estratégica e soluções técnicas especializadas para maximizar o aproveitamento energético do biogás.
                 </p>
 
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
 
                 <!-- CARD 1 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8 group-hover:bg-white/20 transition">
-                        <i class="fa-solid fa-chart-area text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8 group-hover:bg-white/20 transition">
+                        <i class="fa-solid fa-chart-area text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Levantamento do Potencial</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Estudos técnicos para estimar produção atual e futura de biogás e identificar oportunidades energéticas.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Levantamento do Potencial</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Estudos técnicos para estimar produção atual e futura de biogás e identificar oportunidades energéticas.</p>
                 </div>
 
                 <!-- CARD 2 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8">
-                        <i class="fa-solid fa-network-wired text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+                        <i class="fa-solid fa-network-wired text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Projeto Executivo</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Desenvolvimento de projetos completos para drenagem, coleta e captação de biogás.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Projeto Executivo</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Desenvolvimento de projetos completos para drenagem, coleta e captação de biogás.</p>
                 </div>
 
                 <!-- CARD 3 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8">
-                        <i class="fa-solid fa-gears text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+                        <i class="fa-solid fa-gears text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Usinas de Captação</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Dimensionamento técnico de sopradores, flares, instrumentos e equipamentos.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Usinas de Captação</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Dimensionamento técnico de sopradores, flares, instrumentos e equipamentos.</p>
                 </div>
 
                 <!-- CARD 4 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8">
-                        <i class="fa-solid fa-wind text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+                        <i class="fa-solid fa-wind text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Eficiência na Extração</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Diagnóstico operacional e ajustes para maximizar vazão, concentração de metano e estabilidade.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Eficiência na Extração</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Diagnóstico operacional e ajustes para maximizar vazão, concentração de metano e estabilidade.</p>
                 </div>
 
                 <!-- CARD 5 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8">
-                        <i class="fa-solid fa-coins text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+                        <i class="fa-solid fa-coins text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Créditos de Carbono</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Estratégias para registro, estruturação e monetização de projetos ambientais.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Créditos de Carbono</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Estratégias para registro, estruturação e monetização de projetos ambientais.</p>
                 </div>
 
                 <!-- CARD 6 -->
-                <div class="service-card glass rounded-3xl p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 md:mb-8">
-                        <i class="fa-solid fa-bolt text-2xl md:text-3xl text-green-300"></i>
+                <div class="service-card glass rounded-3xl p-5 sm:p-6 md:p-10 border border-white/10" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+                        <i class="fa-solid fa-bolt text-xl sm:text-2xl md:text-3xl text-green-300"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-5">Biometano e Energia</h3>
-                    <p class="text-gray-300 leading-7 text-sm md:text-base">Avaliação de tecnologias para geração de energia e produção de biometano.</p>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-5">Biometano e Energia</h3>
+                    <p class="text-gray-300 leading-7 text-xs sm:text-sm md:text-base">Avaliação de tecnologias para geração de energia e produção de biometano.</p>
                 </div>
 
             </div>
@@ -712,55 +783,55 @@
     </section>
 
     <!-- EXPERTISE -->
-    <section id="expertise" class="py-20 md:py-32 bg-white">
+    <section id="expertise" class="py-16 sm:py-20 md:py-32 bg-white">
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-            <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
 
                 <!-- TEXT -->
                 <div data-aos="fade-right">
 
                     <span class="text-xs uppercase tracking-[3px] text-green-600 font-bold">Nossa Expertise</span>
 
-                    <h2 class="section-title text-4xl md:text-5xl font-black text-verde mt-4 md:mt-5 mb-8 md:mb-10">
+                    <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-black text-verde mt-4 sm:mt-5 mb-6 sm:mb-8 md:mb-10">
                         Mais de 20 anos em toda a cadeia do biogás
                     </h2>
 
-                    <p class="text-gray-600 text-base md:text-lg leading-8 mb-8 md:mb-10">
+                    <p class="text-gray-600 text-sm sm:text-base md:text-lg leading-8 mb-6 sm:mb-8 md:mb-10">
                         A AFIL Energia de Aterro é liderada por profissionais com ampla experiência prática e estratégica no setor, proporcionando segurança técnica, visão integrada e soluções de alto valor agregado.
                     </p>
 
-                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                    <div class="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Extração e captação de biogás</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Extração e captação de biogás</span>
                         </div>
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Operação e otimização</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Operação e otimização</span>
                         </div>
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Geração de energia elétrica</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Geração de energia elétrica</span>
                         </div>
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Produção de biometano</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Produção de biometano</span>
                         </div>
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Projetos de carbono</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Projetos de carbono</span>
                         </div>
 
                         <div class="flex gap-3 md:gap-4">
-                            <i class="fa-solid fa-check text-green-600 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-700 text-sm md:text-base">Estratégias ESG</span>
+                            <i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0 text-xs sm:text-sm md:text-base"></i>
+                            <span class="text-gray-700 text-xs sm:text-sm md:text-base">Estratégias ESG</span>
                         </div>
 
                     </div>
@@ -769,7 +840,7 @@
 
                 <!-- IMAGE -->
                 <div data-aos="fade-left">
-                    <div class="image-wrapper rounded-[35px] h-[450px] md:h-[580px] shadow-2xl">
+                    <div class="image-wrapper rounded-[35px] h-[350px] sm:h-[450px] md:h-[580px] shadow-2xl">
                         <img src="img/grupo.jpeg" alt="Equipe Técnica AFIL" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -781,35 +852,35 @@
     </section>
 
     <!-- CTA SECTION -->
-    <section class="py-20 md:py-28 bg-verde-medio relative overflow-hidden">
+    <section class="py-16 sm:py-20 md:py-28 bg-verde-medio relative overflow-hidden">
 
         <div class="absolute inset-0 bg-grid opacity-10"></div>
 
-        <div class="max-w-5xl mx-auto px-4 md:px-6 text-center relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
 
             <span class="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full glass text-white text-xs md:text-sm mb-6 md:mb-8 justify-center">
                 <i class="fa-solid fa-leaf"></i>
                 Sustentabilidade + Rentabilidade
             </span>
 
-            <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-6 md:mb-8">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6 sm:mb-8">
                 Vamos transformar o potencial do seu aterro em resultados concretos
             </h2>
 
-            <p class="text-lg md:text-xl text-green-100 leading-8 mb-10 md:mb-12 max-w-3xl mx-auto">
+            <p class="text-base sm:text-lg md:text-xl text-green-100 leading-8 mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto">
                 Soluções especializadas em biogás, biometano, créditos de carbono e descarbonização empresarial.
             </p>
 
-            <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-5 flex-wrap">
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap">
 
                 <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer"
-                    class="bg-white text-green-900 px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold hover:scale-105 transition inline-flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp"></i>
+                    class="bg-white text-green-900 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl font-bold hover:scale-105 transition inline-flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg">
+                    <i class="fab fa-whatsapp text-base sm:text-lg"></i>
                     Falar no WhatsApp
                 </a>
 
                 <a href="#contato"
-                    class="border border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition">
+                    class="border border-white/30 text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition text-sm sm:text-base md:text-lg">
                     Solicitar Contato
                 </a>
 
@@ -820,102 +891,102 @@
     </section>
 
     <!-- CONTATO / FOOTER -->
-    <footer id="contato" class="bg-[#081411] text-white pt-20 md:pt-32 pb-12 md:pb-16">
+    <footer id="contato" class="bg-[#081411] text-white pt-16 sm:pt-20 md:pt-32 pb-10 sm:pb-12 md:pb-16">
 
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-            <div class="grid md:grid-cols-2 gap-10 md:gap-20 mb-16 md:mb-24">
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-20 mb-12 sm:mb-16 md:mb-24">
 
                 <!-- INFO -->
                 <div data-aos="fade-right">
 
                     <span class="text-xs uppercase tracking-[3px] text-green-400 font-bold">Contato</span>
 
-                    <h2 class="text-4xl md:text-5xl font-black mt-4 md:mt-5 mb-8 md:mb-10">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mt-4 sm:mt-5 mb-6 sm:mb-8 md:mb-10">
                         Fale com nossos especialistas
                     </h2>
 
-                    <p class="text-gray-400 text-base md:text-lg leading-8 mb-8 md:mb-10">
+                    <p class="text-gray-400 text-sm sm:text-base md:text-lg leading-8 mb-6 sm:mb-8 md:mb-10">
                         Consultoria e engenharia especializada em biogás, biometano, geração de energia e créditos de carbono.
                     </p>
 
-                    <div class="space-y-6 mb-10 md:mb-12">
+                    <div class="space-y-5 sm:space-y-6 mb-8 sm:mb-10 md:mb-12">
 
                         <div class="flex gap-4 md:gap-5 group">
                             <div class="w-12 md:w-14 h-12 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition">
-                                <i class="fa-solid fa-envelope text-green-400"></i>
+                                <i class="fa-solid fa-envelope text-green-400 text-lg sm:text-xl"></i>
                             </div>
                             <div>
                                 <p class="text-gray-500 text-xs md:text-sm mb-1">E-mail</p>
-                                <p class="font-semibold text-sm md:text-base break-all">anderson.silva@afilenergiadeaterro.com.br</p>
+                                <p class="font-semibold text-xs sm:text-sm md:text-base break-all">anderson.silva@afilenergiadeaterro.com.br</p>
                             </div>
                         </div>
 
                         <div class="flex gap-4 md:gap-5 group">
                             <div class="w-12 md:w-14 h-12 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition">
-                                <i class="fa-solid fa-phone text-green-400"></i>
+                                <i class="fa-solid fa-phone text-green-400 text-lg sm:text-xl"></i>
                             </div>
                             <div>
                                 <p class="text-gray-500 text-xs md:text-sm mb-1">Telefone / WhatsApp</p>
-                                <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer" class="font-semibold text-sm md:text-base hover:text-green-400 transition">+55 (11) 99557-9836</a>
+                                <a href="https://wa.me/5511995579836" target="_blank" rel="noopener noreferrer" class="font-semibold text-xs sm:text-sm md:text-base hover:text-green-400 transition">+55 (11) 99557-9836</a>
                             </div>
                         </div>
 
                         <div class="flex gap-4 md:gap-5 group">
                             <div class="w-12 md:w-14 h-12 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition">
-                                <i class="fa-solid fa-location-dot text-green-400"></i>
+                                <i class="fa-solid fa-location-dot text-green-400 text-lg sm:text-xl"></i>
                             </div>
                             <div>
                                 <p class="text-gray-500 text-xs md:text-sm mb-1">Localização</p>
-                                <p class="font-semibold text-sm md:text-base">São Paulo – SP – Brasil</p>
+                                <p class="font-semibold text-xs sm:text-sm md:text-base">São Paulo – SP – Brasil</p>
                             </div>
                         </div>
 
                     </div>
 
                     <!-- SOCIAL LINKS -->
-                    <div class="flex gap-4">
+                    <div class="flex gap-3">
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
-                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-instagram text-sm"></i>
                         </a>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
+                            <i class="fab fa-facebook-f text-sm"></i>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
+                            <i class="fab fa-linkedin-in text-sm"></i>
                         </a>
                     </div>
 
                 </div>
 
                 <!-- FORM -->
-                <div class="bg-white rounded-[30px] md:rounded-[35px] p-6 md:p-10 shadow-2xl text-gray-900" data-aos="fade-left">
+                <div class="bg-white rounded-[30px] md:rounded-[35px] p-6 sm:p-8 md:p-10 shadow-2xl text-gray-900" data-aos="fade-left">
 
-                    <h3 class="text-2xl md:text-3xl font-black text-verde mb-6 md:mb-8">
+                    <h3 class="text-2xl sm:text-2xl md:text-3xl font-black text-verde mb-6 sm:mb-8">
                         Solicite um contato
                     </h3>
 
                     <form class="space-y-5 md:space-y-6" id="contact-form">
 
                         <div>
-                            <label class="font-semibold text-sm mb-2 block text-gray-700">Nome</label>
-                            <input type="text" class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-green-600 text-sm md:text-base" 
+                            <label class="font-semibold text-xs sm:text-sm mb-2 block text-gray-700">Nome</label>
+                            <input type="text" class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-2.5 md:py-3 outline-none focus:border-green-600 text-xs sm:text-sm md:text-base" 
                                 placeholder="Seu nome" required>
                         </div>
 
                         <div>
-                            <label class="font-semibold text-sm mb-2 block text-gray-700">E-mail</label>
-                            <input type="email" class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-green-600 text-sm md:text-base" 
+                            <label class="font-semibold text-xs sm:text-sm mb-2 block text-gray-700">E-mail</label>
+                            <input type="email" class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-2.5 md:py-3 outline-none focus:border-green-600 text-xs sm:text-sm md:text-base" 
                                 placeholder="seuemail@empresa.com" required>
                         </div>
 
                         <div>
-                            <label class="font-semibold text-sm mb-2 block text-gray-700">Mensagem</label>
-                            <textarea class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-3 md:py-4 h-32 md:h-40 outline-none focus:border-green-600 text-sm md:text-base resize-none" 
+                            <label class="font-semibold text-xs sm:text-sm mb-2 block text-gray-700">Mensagem</label>
+                            <textarea class="form-input w-full border border-gray-200 rounded-xl px-4 md:px-5 py-2.5 md:py-3 h-24 sm:h-28 md:h-32 outline-none focus:border-green-600 text-xs sm:text-sm md:text-base resize-none" 
                                 placeholder="Como podemos ajudar?" required></textarea>
                         </div>
 
-                        <button type="submit" class="w-full btn-primary text-white py-3 md:py-5 rounded-xl font-bold text-base md:text-lg">
+                        <button type="submit" class="w-full btn-primary text-white py-2.5 sm:py-3 md:py-4 rounded-xl font-bold text-sm sm:text-base md:text-lg">
                             Enviar Mensagem
                         </button>
 
@@ -926,13 +997,13 @@
             </div>
 
             <!-- FOOTER BOTTOM -->
-            <div class="border-t border-white/10 pt-8 md:pt-10 flex flex-col lg:flex-row justify-between gap-5 items-center text-center lg:text-left">
+            <div class="border-t border-white/10 pt-6 sm:pt-8 md:pt-10 flex flex-col lg:flex-row justify-between gap-4 items-center text-center lg:text-left">
 
-                <p class="text-gray-400 text-xs md:text-sm">
+                <p class="text-gray-400 text-xs sm:text-sm">
                     © 2026 AFIL Energia de Aterro Ltda. Todos os direitos reservados.
                 </p>
 
-                <p class="italic text-green-300 text-xs md:text-sm max-w-2xl">
+                <p class="italic text-green-300 text-xs sm:text-sm max-w-2xl">
                     "Transformamos biogás em energia, sustentabilidade e valor para o seu negócio."
                 </p>
 
